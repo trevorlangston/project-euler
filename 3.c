@@ -1,14 +1,14 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /** The prime factors of 13195 are 5, 7, 13 and 29. */
 /** What is the largest prime factor of the number 600851475143 ? */
 
 void calc_next_prime(long *prime, int primes_offset);
 
-int main(int argc, char *argv[])
+int main()
 {
-    long prime = 600851475143;
+    long num = 600851475143;
 
     long *primes;
     primes = (long*)calloc(1, sizeof(long));
@@ -30,21 +30,19 @@ int main(int argc, char *argv[])
 
         long current_prime = *(primes+i);
 
-        if (current_prime >= prime) {
+        if (current_prime >= num) {
             printf("%ld\n", current_prime);
             return 0;
         }
 
-        if (prime % current_prime == 0) {
+        if (num % current_prime == 0) {
             printf("%ld\n", current_prime);
-            prime /= current_prime;
+            num /= current_prime;
             i = 0;
         } else {
             i++;
         }
     }
-
-    return 0;
 }
 
 void calc_next_prime(long *primes, int primes_offset) {
@@ -52,7 +50,6 @@ void calc_next_prime(long *primes, int primes_offset) {
     long possible_prime = current_prime + 1;
 
     while (1) {
-
         int i;
         int is_prime = 1;
         for (i = 2; i < possible_prime; i++) {
